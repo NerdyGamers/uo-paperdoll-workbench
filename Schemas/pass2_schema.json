@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PaperdollResult",
+  "description": "Paperdoll wearable asset classification schema for Pass 2",
+  "type": "object",
+  "required": ["file_id", "base_name", "slot", "material", "gender", "body_type", "state", "is_hueable", "is_partial_piece", "covers_regions", "theme", "short_description", "confidence", "tags"],
+  "properties": {
+    "file_id":           { "type": "string" },
+    "base_name":         { "type": "string", "description": "Normalized base name, e.g. Shirt, PlateChest, LeatherLegs" },
+    "slot":              { "type": "string", "enum": ["Head", "Chest", "Arms", "Hands", "Legs", "Feet", "Waist", "Back", "Neck", "Ring", "Earring", "Shield", "Weapon", "Unknown"] },
+    "material":          { "type": "string", "enum": ["Cloth", "Leather", "Chain", "Plate", "Bone", "Wood", "Unknown"] },
+    "gender":            { "type": "string", "enum": ["Male", "Female", "Neutral", "Unknown"] },
+    "body_type":         { "type": "string", "enum": ["Human", "Elf", "Gargoyle", "Unknown"] },
+    "state":             { "type": "string", "enum": ["Base", "Equipped", "Partial", "Unknown"] },
+    "is_hueable":        { "type": "boolean", "description": "True if the asset appears to support dye/hue color changes" },
+    "is_partial_piece":  { "type": "boolean", "description": "True if this is one layer of a multi-part item (e.g. Base:Chest only)" },
+    "covers_regions":    { "type": "array", "items": { "type": "string" }, "description": "Body regions visually covered, e.g. [\"torso\", \"shoulders\"]" },
+    "theme":             { "type": "string", "description": "Visual theme based on appearance only, e.g. Medieval, Fantasy, Tribal. Use Unknown." },
+    "short_description": { "type": "string", "description": "One sentence visual description. No lore." },
+    "confidence":        { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+    "tags":              { "type": "array", "items": { "type": "string" } }
+  }
+}
